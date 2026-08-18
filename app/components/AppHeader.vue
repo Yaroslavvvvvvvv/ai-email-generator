@@ -1,15 +1,29 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const localePath = useLocalePath()
+const user = useSupabaseUser()
+const supabase = useSupabaseClient()
 
 const open = ref(false)
 
-const links = computed(() => [
-  { label: t('nav.features'), to: '#features' },
-  { label: t('nav.how'), to: '#how' },
-  { label: t('nav.pricing'), to: localePath('/pricing') },
-  { label: t('nav.faq'), to: '#faq' },
-])
+async function signOut() {
+  open.value = false
+  await supabase.auth.signOut()
+  await navigateTo(localePath('/'))
+}
+
+const links = computed(() => (user.value
+  ? [
+      { label: t('nav.dashboard'), to: localePath('/dashboard') },
+      { label: t('nav.pricing'), to: localePath('/pricing') },
+      { label: t('profile.title'), to: localePath('/profile') },
+    ]
+  : [
+      { label: t('nav.features'), to: '#features' },
+      { label: t('nav.how'), to: '#how' },
+      { label: t('nav.pricing'), to: localePath('/pricing') },
+      { label: t('nav.faq'), to: '#faq' },
+    ]))
 </script>
 
 <template>
@@ -38,12 +52,22 @@ const links = computed(() => [
       <div class="ml-auto flex items-center gap-2 md:ml-0">
         <LangSwitcher class="hidden sm:flex" />
         <ThemeToggle />
-        <NuxtLink :to="localePath('/login')" class="hidden sm:block">
-          <Button :label="t('nav.signIn')" text severity="secondary" size="small" />
-        </NuxtLink>
-        <NuxtLink :to="localePath('/register')" class="hidden sm:block">
-          <Button :label="t('nav.getStarted')" size="small" />
-        </NuxtLink>
+        <template v-if="user">
+          <NuxtLink :to="localePath('/profile')" class="hidden sm:block">
+            <Button :label="t('profile.title')" text severity="secondary" size="small" icon="pi pi-user" />
+          </NuxtLink>
+          <NuxtLink :to="localePath('/dashboard')" class="hidden sm:block">
+            <Button :label="t('nav.dashboard')" size="small" />
+          </NuxtLink>
+        </template>
+        <template v-else>
+          <NuxtLink :to="localePath('/login')" class="hidden sm:block">
+            <Button :label="t('nav.signIn')" text severity="secondary" size="small" />
+          </NuxtLink>
+          <NuxtLink :to="localePath('/register')" class="hidden sm:block">
+            <Button :label="t('nav.getStarted')" size="small" />
+          </NuxtLink>
+        </template>
         <Button
           class="md:hidden"
           text
@@ -75,12 +99,20 @@ const links = computed(() => [
       <div class="mt-3 flex items-center justify-between border-t border-[var(--aeg-border)] pt-3">
         <LangSwitcher />
         <div class="flex gap-2">
-          <NuxtLink :to="localePath('/login')" @click="open = false">
-            <Button :label="t('nav.signIn')" text severity="secondary" size="small" />
-          </NuxtLink>
-          <NuxtLink :to="localePath('/register')" @click="open = false">
-            <Button :label="t('nav.getStarted')" size="small" />
-          </NuxtLink>
+          <template v-if="user">
+            <Button :label="t('auth.signOut')" text severity="secondary" size="small" @click="signOut" />
+            <NuxtLink :to="localePath('/dashboard')" @click="open = false">
+              <Button :label="t('nav.dashboard')" size="small" />
+            </NuxtLink>
+          </template>
+          <template v-else>
+            <NuxtLink :to="localePath('/login')" @click="open = false">
+              <Button :label="t('nav.signIn')" text severity="secondary" size="small" />
+            </NuxtLink>
+            <NuxtLink :to="localePath('/register')" @click="open = false">
+              <Button :label="t('nav.getStarted')" size="small" />
+            </NuxtLink>
+          </template>
         </div>
       </div>
     </div>
