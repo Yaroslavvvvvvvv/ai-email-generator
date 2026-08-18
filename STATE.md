@@ -140,7 +140,7 @@ server/
   lib/email/           index (фабрика) · mock-provider · phrases/{en,uk,ru,types}
   utils/auth.ts        requireUserId
 shared/types/email.ts  TONES · LENGTHS · EmailProvider — спільне для клієнта й сервера
-i18n/locales/          en · uk · ru — 166 ключів, парність перевіряється скриптом
+i18n/locales/          en · uk · ru — по 166 ключів у кожному, парність тримається руками
 supabase/              schema.sql · 002-fix-consume-generation.sql
 test/                  mock-provider.test.ts — 11 тестів
 scripts/e2e.mjs        наскрізна перевірка живого деплою, прибирає за собою
