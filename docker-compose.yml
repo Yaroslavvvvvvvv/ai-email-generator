@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      # Nuxt reads these at runtime and they override what the build baked in,
+      # which is why the image itself carries no credentials.
+      NUXT_PUBLIC_SUPABASE_URL: ${SUPABASE_URL}
+      NUXT_PUBLIC_SUPABASE_KEY: ${SUPABASE_KEY}
+      NUXT_SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}

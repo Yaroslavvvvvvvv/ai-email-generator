@@ -1,0 +1,11 @@
+node_modules
+.output
+.nuxt
+.nitro
+.cache
+.git
+.env
+.env.*
+!.env.example
+dist
+coverage

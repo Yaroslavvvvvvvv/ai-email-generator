@@ -27,6 +27,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
+    '@nuxt/eslint',
     '@nuxtjs/supabase',
     '@primevue/nuxt-module',
     '@nuxtjs/i18n',

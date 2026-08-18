@@ -9,7 +9,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@nuxtjs/color-mode": "^4.0.1",
@@ -32,6 +34,8 @@
     "fsevents@2.3.3": true
   },
   "devDependencies": {
+    "@nuxt/eslint": "^1.17.0",
+    "eslint": "^10.8.1",
     "vitest": "^4.1.10"
   }
 }
