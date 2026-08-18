@@ -114,6 +114,9 @@ begin
     returning usage_days.count into v_count;
 
     return query select true, v_count, null::integer;
+    -- `return query` appends rows, it does not leave the function. Without
+    -- this the premium branch falls through and spends the generation twice.
+    return;
   end if;
 
   insert into usage_days (user_id, day, count)
@@ -126,6 +129,7 @@ begin
   if v_count is null then
     select count into v_count from usage_days where user_id = p_user and day = v_day;
     return query select false, coalesce(v_count, p_limit), p_limit;
+    return;
   end if;
 
   return query select true, v_count, p_limit;

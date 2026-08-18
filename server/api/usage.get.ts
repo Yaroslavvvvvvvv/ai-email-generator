@@ -1,17 +1,14 @@
-import { serverSupabaseServiceRole, serverSupabaseUser } from '#supabase/server'
+import { serverSupabaseServiceRole } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
-  const user = await serverSupabaseUser(event)
-  if (!user) {
-    throw createError({ statusCode: 401, statusMessage: 'unauthorised' })
-  }
+  const userId = await requireUserId(event)
 
   const admin = serverSupabaseServiceRole(event)
   const day = new Date().toISOString().slice(0, 10)
 
   const [{ data: profile }, { data: usage }] = await Promise.all([
-    admin.from('profiles').select('is_premium').eq('id', user.id).maybeSingle(),
-    admin.from('usage_days').select('count').eq('user_id', user.id).eq('day', day).maybeSingle(),
+    admin.from('profiles').select('is_premium').eq('id', userId).maybeSingle(),
+    admin.from('usage_days').select('count').eq('user_id', userId).eq('day', day).maybeSingle(),
   ])
 
   const limit = useRuntimeConfig(event).public.freeDailyLimit

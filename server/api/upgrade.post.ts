@@ -1,4 +1,4 @@
-import { serverSupabaseServiceRole, serverSupabaseUser } from '#supabase/server'
+import { serverSupabaseServiceRole } from '#supabase/server'
 
 /**
  * Premium without a payment provider.
@@ -9,10 +9,7 @@ import { serverSupabaseServiceRole, serverSupabaseUser } from '#supabase/server'
  * webhook confirms payment instead of straight from the button.
  */
 export default defineEventHandler(async (event) => {
-  const user = await serverSupabaseUser(event)
-  if (!user) {
-    throw createError({ statusCode: 401, statusMessage: 'unauthorised' })
-  }
+  const userId = await requireUserId(event)
 
   const { plan } = await readBody<{ plan?: string }>(event) ?? {}
   const isPremium = plan !== 'free'
@@ -21,9 +18,10 @@ export default defineEventHandler(async (event) => {
   const { error } = await admin
     .from('profiles')
     .update({ is_premium: isPremium })
-    .eq('id', user.id)
+    .eq('id', userId)
 
   if (error) {
+    console.error('[upgrade] failed', error)
     throw createError({ statusCode: 500, statusMessage: 'upgrade_failed' })
   }
 

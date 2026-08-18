@@ -1,4 +1,4 @@
-import { serverSupabaseServiceRole, serverSupabaseUser } from '#supabase/server'
+import { serverSupabaseServiceRole } from '#supabase/server'
 import { isEmailLocale, isLength, isTone } from '#shared/types/email'
 import type { GenerationRequest } from '#shared/types/email'
 import { createEmailProvider } from '~~/server/lib/email'
@@ -7,10 +7,7 @@ const TOPIC_MIN = 3
 const TOPIC_MAX = 500
 
 export default defineEventHandler(async (event) => {
-  const user = await serverSupabaseUser(event)
-  if (!user) {
-    throw createError({ statusCode: 401, statusMessage: 'unauthorised' })
-  }
+  const userId = await requireUserId(event)
 
   const body = await readBody<Partial<GenerationRequest>>(event)
   const topic = typeof body?.topic === 'string' ? body.topic.trim() : ''
@@ -28,10 +25,11 @@ export default defineEventHandler(async (event) => {
   // Check and spend in one statement — two tabs pressing Generate together
   // must not both slip past the last remaining generation.
   const { data: usage, error: usageError } = await admin
-    .rpc('consume_generation', { p_user: user.id, p_limit: limit })
+    .rpc('consume_generation', { p_user: userId, p_limit: limit })
     .single<{ allowed: boolean, used: number, day_limit: number | null }>()
 
   if (usageError) {
+    console.error('[generate] usage check failed', usageError)
     throw createError({ statusCode: 500, statusMessage: 'usage_unavailable' })
   }
   if (!usage.allowed) {
@@ -53,7 +51,7 @@ export default defineEventHandler(async (event) => {
   const { data: saved, error: saveError } = await admin
     .from('generations')
     .insert({
-      user_id: user.id,
+      user_id: userId,
       topic,
       tone: body.tone,
       length: body.length,
@@ -66,6 +64,7 @@ export default defineEventHandler(async (event) => {
     .single()
 
   if (saveError) {
+    console.error('[generate] save failed', saveError)
     throw createError({ statusCode: 500, statusMessage: 'save_failed' })
   }
 
