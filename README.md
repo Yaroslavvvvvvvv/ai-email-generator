@@ -5,6 +5,10 @@ can send. Built as a 48-hour test assignment.
 
 **Live:** https://ai-email-generator-ruby.vercel.app
 
+**How it was built:** [AI Development Report](AI-REPORT.md) — the tool, the
+process, the calls made against its advice, and what each side caught that the
+other could not.
+
 ---
 
 ## Running it
