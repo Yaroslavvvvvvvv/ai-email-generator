@@ -27,12 +27,25 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   modules: [
+    '@nuxtjs/supabase',
     '@primevue/nuxt-module',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
   ],
 
   css: ['~/assets/css/main.css', 'primeicons/primeicons.css'],
+
+  runtimeConfig: {
+    public: {
+      freeDailyLimit: 5,
+    },
+  },
+
+  // Route protection is ours, not the module's: with localised prefixes the
+  // module's path matching would have to list every locale separately.
+  supabase: {
+    redirect: false,
+  },
 
   vite: {
     plugins: [tailwindcss()],

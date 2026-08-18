@@ -126,5 +126,140 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "auth": {
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Sign in to pick up where you left off.",
+    "registerTitle": "Create your account",
+    "registerSubtitle": "Five emails a day, free, no card.",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 6 characters.",
+    "signIn": "Sign in",
+    "signUp": "Create account",
+    "signOut": "Sign out",
+    "noAccount": "No account yet?",
+    "haveAccount": "Already have an account?",
+    "checkEmail": "Almost there — open the confirmation link we sent to your inbox.",
+    "errors": {
+      "invalid": "Wrong email or password.",
+      "exists": "That email is already registered. Try signing in.",
+      "weak": "Password is too short — use at least 6 characters.",
+      "generic": "Something went wrong on our side. Please try again.",
+      "required": "Fill in both fields."
+    }
+  },
+  "dashboard": {
+    "title": "New email",
+    "subtitle": "Describe it once. Pick how it should sound.",
+    "topic": "What is the email about?",
+    "topicPlaceholder": "e.g. remind the landlord about the broken heating, second time",
+    "topicHint": "One line is enough.",
+    "tone": "Tone",
+    "length": "Length",
+    "generate": "Generate",
+    "generating": "Writing…",
+    "regenerate": "Generate again",
+    "result": "Your email",
+    "subject": "Subject",
+    "copy": "Copy",
+    "copied": "Copied to clipboard",
+    "empty": "Nothing generated yet",
+    "emptyHint": "Fill in the topic above and press Generate.",
+    "tones": {
+      "formal": "Formal",
+      "friendly": "Friendly",
+      "persuasive": "Persuasive",
+      "direct": "Direct"
+    },
+    "toneHints": {
+      "formal": "Keeps its distance",
+      "friendly": "Warm and easy",
+      "persuasive": "Makes the case",
+      "direct": "Cuts to it"
+    },
+    "lengths": {
+      "short": "Short",
+      "medium": "Medium",
+      "long": "Long"
+    },
+    "lengthHints": {
+      "short": "1 paragraph",
+      "medium": "3 paragraphs",
+      "long": "5 paragraphs"
+    },
+    "usage": {
+      "left": "{count} of {limit} left today",
+      "unlimited": "Unlimited",
+      "premium": "Premium",
+      "limitTitle": "You have used today's five",
+      "limitText": "The counter resets at midnight UTC. Premium removes it entirely.",
+      "seePricing": "See Premium"
+    },
+    "history": {
+      "title": "History",
+      "empty": "Your generated emails will appear here.",
+      "delete": "Delete",
+      "deleted": "Email deleted",
+      "showMore": "Show more",
+      "confirmDelete": "Delete this email for good?"
+    }
+  },
+  "pricing": {
+    "title": "Simple pricing",
+    "subtitle": "Start free. Upgrade only when the daily five stops being enough.",
+    "perMonth": "/ month",
+    "free": {
+      "name": "Free",
+      "price": "$0",
+      "tagline": "For the occasional awkward email.",
+      "features": [
+        "5 emails a day",
+        "All four tones",
+        "All three lengths",
+        "Full history",
+        "Three languages"
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "$9",
+      "tagline": "For people who write all day.",
+      "features": [
+        "Unlimited emails",
+        "All four tones",
+        "All three lengths",
+        "Full history",
+        "Three languages",
+        "Priority when new tones ship"
+      ]
+    },
+    "current": "Your plan",
+    "upgrade": "Upgrade to Premium",
+    "downgrade": "Back to Free",
+    "upgraded": "Premium is on. The daily limit is gone.",
+    "downgraded": "You are back on the free plan.",
+    "signInFirst": "Sign in to upgrade",
+    "demoNote": "No payment provider is connected in this build. Upgrade flips the flag on your account, and the limit really does disappear."
+  },
+  "profile": {
+    "title": "Profile",
+    "email": "Email",
+    "plan": "Plan",
+    "memberSince": "Member since",
+    "generated": "Emails generated",
+    "usedToday": "Used today",
+    "planFree": "Free",
+    "planPremium": "Premium",
+    "managePlan": "Manage plan"
+  },
+  "errors": {
+    "notFoundTitle": "This page does not exist",
+    "notFoundText": "The link may be old, or we may have moved something.",
+    "serverTitle": "Something broke on our side",
+    "serverText": "It is not you. Try again in a moment.",
+    "home": "Back to home",
+    "retry": "Try again",
+    "network": "No connection to the server. Check your network and try again."
   }
 }
