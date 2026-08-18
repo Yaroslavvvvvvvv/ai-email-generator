@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --aeg-bg: #ffffff;
+  --aeg-surface: #f6f7f9;
+  --aeg-border: #dfe3e8;
+  --aeg-text: #101418;
+  --aeg-muted: #5b6570;
+}
+
+.dark {
+  --aeg-bg: #0e1116;
+  --aeg-surface: #171b22;
+  --aeg-border: #2a313b;
+  --aeg-text: #e8ecf1;
+  --aeg-muted: #9aa4b1;
+}
+
+html, body, #__nuxt {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--aeg-bg);
+  color: var(--aeg-text);
+  -webkit-font-smoothing: antialiased;
+}
