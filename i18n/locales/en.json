@@ -1,1 +1,130 @@
-{}
+{
+  "meta": {
+    "title": "AI Email Generator — write the email, not the draft",
+    "description": "Describe the topic, pick a tone and a length. Get a ready-to-send email in seconds."
+  },
+  "nav": {
+    "features": "Features",
+    "how": "How it works",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "signIn": "Sign in",
+    "getStarted": "Get started",
+    "dashboard": "Dashboard"
+  },
+  "hero": {
+    "badge": "Free plan · no card required",
+    "title": "Write the email, not the draft",
+    "subtitle": "Describe what you need to say. Pick a tone and a length. Get an email you can send as it is — in a couple of seconds.",
+    "ctaPrimary": "Start writing free",
+    "ctaSecondary": "See how it works",
+    "note": "5 emails a day on the free plan"
+  },
+  "preview": {
+    "topicLabel": "Topic",
+    "topic": "Follow up on an unpaid invoice, third reminder",
+    "toneLabel": "Tone",
+    "tone": "Direct",
+    "lengthLabel": "Length",
+    "length": "Short",
+    "button": "Generate",
+    "subject": "Subject: Invoice #2481 — still outstanding",
+    "body": "Hi Martin,\n\nInvoice #2481 was due on 12 May and is still unpaid. This is my third reminder.\n\nPlease settle it by Friday, or let me know the date I can expect the payment.\n\nBest,\nAnna"
+  },
+  "features": {
+    "title": "What it actually does",
+    "subtitle": "Four fields, one button. The rest is our job.",
+    "items": {
+      "tone": {
+        "title": "Tone you can hear",
+        "text": "Formal, Friendly, Persuasive, Direct. The difference shows up in the first sentence, not in a label."
+      },
+      "length": {
+        "title": "Length that means something",
+        "text": "Short is one paragraph. Long is five. You pick what the situation deserves."
+      },
+      "speed": {
+        "title": "Seconds, not minutes",
+        "text": "The blank page is the expensive part. We hand you a full draft to react to instead."
+      },
+      "history": {
+        "title": "Everything is kept",
+        "text": "Every email you generate stays in your history. Reopen it, copy it, send it again."
+      },
+      "languages": {
+        "title": "Three languages",
+        "text": "English, Ukrainian and Russian — interface and emails alike. Switch anytime."
+      },
+      "privacy": {
+        "title": "Your drafts are yours",
+        "text": "Emails are stored under your account only. No sharing, no training on your text."
+      }
+    }
+  },
+  "how": {
+    "title": "Three steps",
+    "steps": {
+      "one": {
+        "title": "Say what it is about",
+        "text": "One line is enough: “ask the landlord to fix the heating, second time”."
+      },
+      "two": {
+        "title": "Choose tone and length",
+        "text": "Same topic, four tones, three lengths. Twelve ways to say the same thing."
+      },
+      "three": {
+        "title": "Copy and send",
+        "text": "Subject and body come out together. Edit if you want, or send as it is."
+      }
+    }
+  },
+  "faq": {
+    "title": "Questions people actually ask",
+    "items": {
+      "q1": {
+        "q": "Is it really free?",
+        "a": "Yes. The free plan gives you 5 emails a day, forever, without a card. Premium removes the limit."
+      },
+      "q2": {
+        "q": "Which model writes the emails?",
+        "a": "This build ships with a deterministic local generator, so the app runs with no API key at all. The generation layer sits behind one interface, so a hosted model can be plugged in by changing a single line."
+      },
+      "q3": {
+        "q": "Will it sound like a robot?",
+        "a": "It sounds like the tone you picked. Direct is blunt, Friendly uses first names, Formal keeps its distance. If it is not right, regenerate — it costs one of your daily five."
+      },
+      "q4": {
+        "q": "Can I edit the result?",
+        "a": "Of course. The output is plain text in a field you can type into. Most people change one sentence and send."
+      },
+      "q5": {
+        "q": "Do you read my emails?",
+        "a": "No. They are stored in your account so you can find them later, and nowhere else."
+      },
+      "q6": {
+        "q": "What happens if I hit the daily limit?",
+        "a": "You see how long is left until the counter resets, and a link to Pricing. Nothing you already generated is lost."
+      }
+    }
+  },
+  "cta": {
+    "title": "Your next email is already written",
+    "subtitle": "Create an account and send the first one in under a minute.",
+    "button": "Start writing free"
+  },
+  "footer": {
+    "tagline": "Write the email, not the draft.",
+    "product": "Product",
+    "legal": "Legal",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "rights": "A test assignment build. Not a commercial service."
+  },
+  "common": {
+    "theme": "Theme",
+    "language": "Language",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  }
+}

@@ -1,16 +1,20 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
+const { t } = useI18n()
+
+useSeoMeta({
+  title: () => t('meta.title'),
+  description: () => t('meta.description'),
+  ogTitle: () => t('meta.title'),
+  ogDescription: () => t('meta.description'),
+})
 </script>
 
 <template>
-  <main class="flex-1 grid place-items-center p-8">
-    <div class="text-center space-y-4">
-      <h1 class="text-4xl font-semibold tracking-tight">AI Email Generator</h1>
-      <p class="text-[var(--aeg-muted)]">Skeleton is live. Build in progress.</p>
-      <Button
-        :label="colorMode.value === 'dark' ? 'Light' : 'Dark'"
-        @click="colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'"
-      />
-    </div>
-  </main>
+  <div>
+    <LandingTheHero />
+    <LandingFeatureGrid />
+    <LandingHowItWorks />
+    <LandingFaqSection />
+    <LandingCtaSection />
+  </div>
 </template>
