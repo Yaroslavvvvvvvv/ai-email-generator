@@ -2,7 +2,7 @@ import type { LocalePhrases } from './types'
 
 export const en: LocalePhrases = {
   formal: {
-    subject: 'Regarding {topic}',
+    subject: 'Regarding: {topic}',
     greeting: ['Dear Sir or Madam,', 'Dear colleagues,'],
     opener: [
       'I am writing to you regarding the following: {topic}.',
@@ -24,7 +24,7 @@ export const en: LocalePhrases = {
     signoff: ['Yours sincerely,', 'Kind regards,'],
   },
   friendly: {
-    subject: 'About {topic}',
+    subject: 'Quick note: {topic}',
     greeting: ['Hi there,', 'Hey,'],
     opener: [
       'Hope you are doing well! I wanted to reach out about this: {topic}.',

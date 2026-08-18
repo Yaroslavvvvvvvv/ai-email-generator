@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { EMAIL_LOCALES, LENGTHS, TONES } from '#shared/types/email'
 import type { EmailLocale, Length, Tone } from '#shared/types/email'
 import { MockProvider } from '~~/server/lib/email/mock-provider'
+import { PHRASES } from '~~/server/lib/email/phrases'
 
 const provider = new MockProvider({ delayMs: 0 })
 
@@ -79,5 +80,26 @@ describe('MockProvider', () => {
     const { body } = provider.compose({ ...base, length: 'long' })
     const paragraphs = body.split('\n\n')
     expect(new Set(paragraphs).size).toBe(paragraphs.length)
+  })
+
+  /**
+   * The topic arrives as a verb phrase — "remind the landlord about the
+   * heating" — because that is what the form asks for. A template that glues
+   * it straight onto a preposition reads as broken grammar: "About remind the
+   * landlord". Every template must either open with the topic or introduce it
+   * with a colon.
+   */
+  it('introduces the topic instead of gluing it onto a preposition', () => {
+    for (const locale of EMAIL_LOCALES) {
+      for (const tone of TONES) {
+        const bank = PHRASES[locale][tone]
+        for (const template of [bank.subject, ...bank.opener]) {
+          const at = template.indexOf('{topic}')
+          if (at < 0) continue
+          const before = template.slice(0, at)
+          expect(before === '' || before.endsWith(': '), `${locale}/${tone}: ${template}`).toBe(true)
+        }
+      }
+    }
   })
 })

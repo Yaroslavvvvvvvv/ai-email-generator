@@ -25,21 +25,17 @@
 розділення компонентів ✅, три мови ✅, дві теми ✅.
 **shadcn/ui немає** — свідомо, обрано PrimeVue.
 
-**14 тестів проходять. ESLint чистий. CI зелений. Образ Docker зібраний і перевірений.**
+**11 тестів проходять. ESLint чистий. CI зелений. Образ Docker зібраний і перевірений.**
 
 ## Що лишилось
 
-**1. Два налаштування в Supabase — без них рецензент застрягне.**
-
-- **Authentication → Sign In / Providers → Email → `Confirm email` вимкнути.**
-  Інакше після реєстрації людина бачить «перевірте пошту» й до дашборда не доходить.
-- **Authentication → URL Configuration → `Site URL`** замінити `http://localhost:3000`
-  на `https://ai-email-generator-ruby.vercel.app`, у `Redirect URLs` додати
-  `https://ai-email-generator-ruby.vercel.app/**`.
-  Зараз лист із підтвердженням веде на localhost — перевірено, дає `ERR_CONNECTION_REFUSED`.
+**1. ~~Два налаштування в Supabase~~ — зроблено 18 серпня.**
+`Confirm email` вимкнено, `Site URL` і `Redirect URLs` переведені на прод-домен.
+Перевірено наскрізь на проді: реєстрація віддає сесію одразу, `/api/usage`,
+`/api/generate` і 401 без сесії відповідають як слід.
 
 **2. Пройти застосунок руками в браузері.** API перевірений наскрізь скриптом
-`/tmp/aeg-e2e.mjs` (локально, у контейнері й на проді), але **жодну кнопку жодна
+`scripts/e2e.mjs` (локально, у контейнері й на проді), але **жодну кнопку жодна
 людина ще не натискала**. Особливо: мобільна ширина, перемикач теми на кожному
 екрані, перемикач мов у дашборді.
 
@@ -79,7 +75,7 @@
 cd ~/WebstormProjects/ai-email-generator
 npm install
 npm run dev        # http://localhost:3000
-npm test           # 14 тестів
+npm test           # 11 тестів
 npm run lint
 npm run build
 docker compose up --build
@@ -102,8 +98,10 @@ docker compose up --build
   запускати тільки з `export $(grep -v '^#' .env | xargs)`.
 - **Змінні у Vercel не діють без Redeploy** — Nuxt запікає їх у збірку.
   `/api/health` показує, чи вони на місці, не розкриваючи значень.
-- **Тема листа — дієслівна фраза.** Англійські зачини мусять вводити її через двокрапку,
-  інакше виходить «I need to settle follow up on an unpaid invoice».
+- **Тема листа — дієслівна фраза.** Будь-який шаблон мусить вводити її через двокрапку
+  або починати з неї, інакше виходить «Про нагадати про рахунок» чи «About remind the
+  landlord». Ловилося вже двічі, тому винесено в тест
+  «introduces the topic instead of gluing it onto a preposition».
 - **Велика літера в темі листа** ставиться лише коли `{topic}` починає рядок,
   інакше виходить «Про Нагадати».
 - **`UID` — зарезервована змінна в цій оболонці**, присвоєння падає з `bad math expression`.
@@ -126,7 +124,8 @@ server/
 shared/types/email.ts  TONES · LENGTHS · EmailProvider — спільне для клієнта й сервера
 i18n/locales/          en · uk · ru — 166 ключів, парність перевіряється скриптом
 supabase/              schema.sql · 002-fix-consume-generation.sql
-test/                  mock-provider.test.ts — 14 тестів
+test/                  mock-provider.test.ts — 11 тестів
+scripts/e2e.mjs        наскрізна перевірка живого деплою, прибирає за собою
 docs/ai-report.md      сировина для AI Development Report
 ```
 
